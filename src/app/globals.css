@@ -1,0 +1,322 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * "Graph-paper notebook" design tokens.
+ * Paper and ink for the UI, a highlighter for "where we are right now",
+ * fountain-pen blue for pointers and actions, red pen for mistakes.
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --font-sans: var(--font-atkinson);
+  --font-mono: var(--font-atkinson-mono);
+  --font-heading: var(--font-atkinson);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+
+  /* Notebook-specific colors */
+  --color-paper: var(--paper);
+  --color-grid: var(--grid-line);
+  --color-highlight: var(--highlight);
+  --color-highlight-soft: var(--highlight-soft);
+  --color-highlight-ink: var(--highlight-ink);
+  --color-pass: var(--pass);
+  --color-pass-soft: var(--pass-soft);
+  --color-fail: var(--fail);
+  --color-fail-soft: var(--fail-soft);
+  --color-ptr-1: var(--ptr-1);
+  --color-ptr-2: var(--ptr-2);
+  --color-ptr-3: var(--ptr-3);
+  --color-ptr-4: var(--ptr-4);
+  --color-easy: var(--easy);
+  --color-medium: var(--medium);
+  --color-hard: var(--hard);
+
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+:root {
+  --background: #f5f6f8;
+  --foreground: #17233f;
+  --card: #ffffff;
+  --card-foreground: #17233f;
+  --popover: #ffffff;
+  --popover-foreground: #17233f;
+  --primary: #2b54d6;
+  --primary-foreground: #ffffff;
+  --secondary: #eaeef6;
+  --secondary-foreground: #17233f;
+  --muted: #eef1f5;
+  --muted-foreground: #566179;
+  --accent: #e7edfc;
+  --accent-foreground: #17233f;
+  --destructive: #c8323a;
+  --border: #dce1ea;
+  --input: #d3d9e4;
+  --ring: #2b54d6;
+  --chart-1: #2b54d6;
+  --chart-2: #b9306f;
+  --chart-3: #0b8585;
+  --chart-4: #c9711a;
+  --chart-5: #6a4fc9;
+  --radius: 0.625rem;
+  --sidebar: #fbfcfd;
+  --sidebar-foreground: #17233f;
+  --sidebar-primary: #2b54d6;
+  --sidebar-primary-foreground: #ffffff;
+  --sidebar-accent: #e7edfc;
+  --sidebar-accent-foreground: #17233f;
+  --sidebar-border: #e2e6ee;
+  --sidebar-ring: #2b54d6;
+
+  --paper: #ffffff;
+  --grid-line: #e6ebf3;
+  --highlight: #ffe45c;
+  --highlight-soft: #fff4b0;
+  --highlight-ink: #17233f;
+  --pass: #15835a;
+  --pass-soft: #e3f4ec;
+  --fail: #c8323a;
+  --fail-soft: #fbe7e8;
+  --ptr-1: #2b54d6;
+  --ptr-2: #b9306f;
+  --ptr-3: #0b8080;
+  --ptr-4: #b5650f;
+  --easy: #15835a;
+  --medium: #a86400;
+  --hard: #c8323a;
+}
+
+.dark {
+  --background: #0d1424;
+  --foreground: #e6eaf3;
+  --card: #131c31;
+  --card-foreground: #e6eaf3;
+  --popover: #172038;
+  --popover-foreground: #e6eaf3;
+  --primary: #86a5ff;
+  --primary-foreground: #0d1424;
+  --secondary: #1b2541;
+  --secondary-foreground: #e6eaf3;
+  --muted: #18213a;
+  --muted-foreground: #9aa6c0;
+  --accent: #1f2b4d;
+  --accent-foreground: #e6eaf3;
+  --destructive: #ff6b70;
+  --border: #253153;
+  --input: #2c3960;
+  --ring: #86a5ff;
+  --chart-1: #86a5ff;
+  --chart-2: #f07bb6;
+  --chart-3: #45cccc;
+  --chart-4: #f2a54a;
+  --chart-5: #b39dff;
+  --sidebar: #0f1729;
+  --sidebar-foreground: #e6eaf3;
+  --sidebar-primary: #86a5ff;
+  --sidebar-primary-foreground: #0d1424;
+  --sidebar-accent: #1b2541;
+  --sidebar-accent-foreground: #e6eaf3;
+  --sidebar-border: #1f2a47;
+  --sidebar-ring: #86a5ff;
+
+  --paper: #111a2e;
+  --grid-line: #1a2540;
+  --highlight: #f2d64b;
+  --highlight-soft: #3d3818;
+  --highlight-ink: #141b2c;
+  --pass: #45c98f;
+  --pass-soft: #12322a;
+  --fail: #ff6b70;
+  --fail-soft: #3a1820;
+  --ptr-1: #86a5ff;
+  --ptr-2: #f07bb6;
+  --ptr-3: #45cccc;
+  --ptr-4: #f2a54a;
+  --easy: #45c98f;
+  --medium: #f2b14a;
+  --hard: #ff6b70;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  html {
+    @apply font-sans;
+    -webkit-text-size-adjust: 100%;
+  }
+  body {
+    @apply bg-background text-foreground;
+    font-feature-settings: "ss01";
+  }
+  button:not(:disabled),
+  [role="button"]:not(:disabled) {
+    cursor: pointer;
+  }
+  :focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+  ::selection {
+    background: var(--highlight-soft);
+    color: var(--foreground);
+  }
+  .dark ::selection {
+    background: #3a4a7a;
+  }
+}
+
+@layer components {
+  /* The faint graph-paper grid that data structures are drawn on. */
+  .graph-paper {
+    background-color: var(--paper);
+    background-image:
+      linear-gradient(var(--grid-line) 1px, transparent 1px),
+      linear-gradient(90deg, var(--grid-line) 1px, transparent 1px);
+    background-size: 20px 20px;
+    background-position: -1px -1px;
+  }
+
+  /* A highlighter stroke: slightly uneven, like a real marker. */
+  .highlighter {
+    background: linear-gradient(
+      100deg,
+      transparent 0.2em,
+      var(--highlight) 0.35em,
+      var(--highlight) calc(100% - 0.35em),
+      transparent calc(100% - 0.2em)
+    );
+    color: var(--highlight-ink);
+  }
+
+  .prose-notebook {
+    line-height: 1.65;
+  }
+  .prose-notebook p + p {
+    margin-top: 0.75em;
+  }
+  .prose-notebook code {
+    font-family: var(--font-mono);
+    font-size: 0.88em;
+    padding: 0.1em 0.35em;
+    border-radius: 0.3em;
+    background: var(--muted);
+    border: 1px solid var(--border);
+    white-space: break-spaces;
+  }
+  .prose-notebook a {
+    color: var(--primary);
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+  .prose-notebook ul,
+  .prose-notebook ol {
+    margin: 0.5em 0;
+    padding-left: 1.4em;
+  }
+  .prose-notebook ul {
+    list-style: disc;
+  }
+  .prose-notebook ol {
+    list-style: decimal;
+  }
+  .prose-notebook li + li {
+    margin-top: 0.3em;
+  }
+  .prose-notebook h3 {
+    font-weight: 700;
+    font-size: 1.1em;
+    margin-top: 1.2em;
+    margin-bottom: 0.4em;
+  }
+
+  /* Python syntax colors for the lightweight highlighter (visualizer + snippets). */
+  .tok-kw {
+    color: #8a2fb8;
+    font-weight: 600;
+  }
+  .tok-str {
+    color: #1e7a3c;
+  }
+  .tok-num {
+    color: #b5520f;
+  }
+  .tok-com {
+    color: #6b7690;
+    font-style: italic;
+  }
+  .tok-fn {
+    color: #2b54d6;
+  }
+  .tok-builtin {
+    color: #0b7878;
+  }
+  .dark .tok-kw {
+    color: #d29bff;
+  }
+  .dark .tok-str {
+    color: #8bd99b;
+  }
+  .dark .tok-num {
+    color: #f6b26b;
+  }
+  .dark .tok-com {
+    color: #8792ad;
+  }
+  .dark .tok-fn {
+    color: #8fb0ff;
+  }
+  .dark .tok-builtin {
+    color: #6fd6d6;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
